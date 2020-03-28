@@ -1,44 +1,33 @@
 import json
-from itertools import product
-from pprint import pprint
+from constants import *
+
+from scale_collection import ScaleCollection
+from scale_converter import ScaleConverter
+
 
 class ScaleExplorer:
 
     def __init__(self):
+        """ The main program initializer that oversees all interactions with the application. """
 
-        scale_strings = []
-        for string in sorted(list(product('10', repeat=12))):
-            scale_strings.append(''.join(string))
+        self.converter = ScaleConverter()
 
-        with open('scales.json', 'r') as infile:
-            scales = json.load(infile)
-        print(scales)
+        # The app should initialize with the ScaleLibrary JSON file.
+        try:
+            with open('ScaleLibrary.json', 'r') as infile:
+                data = json.load(infile)
+                self.scales = ScaleCollection(data)
 
-        all_scales = {}
+        # If ScaleLibrary isn't there, throw an error and exit.
+        except FileNotFoundError:
+            print(ERROR_1)
+            return
 
-        for string in scale_strings:
-            if string in scales:
-                this_scale = scales[string]
-                this_scale['length'] = self.scale_length(string)
-                all_scales[string] = this_scale
-            else:
-                if self.is_a_scale(string):
-                    all_scales[string] = {
-                        'name': 'Unknown',
-                        'alternate_names': [],
-                        'length': self.scale_length(string)
-                    }
+        some_scales = self.scales.get_scales_of_length(7)
+        for scale in some_scales:
+            if scale.get_name() != 'Unknown':
+                print(f"{scale.get_name()} : {self.converter.convert_scale(scale, B, FL)}, leap pattern: {scale.get_leap_pattern()}")
 
-        with open('ScaleLibrary.json', 'w') as scale_json:
-            json.dump(all_scales, scale_json, sort_keys=True, indent=4)
-
-    @staticmethod
-    def is_a_scale(scale):
-        return scale.count('1') >= 2
-
-    @staticmethod
-    def scale_length(scale):
-        return scale.count('1')
 
 
 if __name__ == '__main__':

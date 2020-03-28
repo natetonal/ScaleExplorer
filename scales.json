@@ -1,0 +1,980 @@
+{
+  "101011010101" :
+  {
+    "name": "Major",
+    "alternate_names":
+      [
+        "Ionian",
+        "Greek Lydian",
+        "Hypolydian",
+        "Bilawal That",
+        "Rast (Ascending)",
+        "Maqam Ajam",
+        "Mela Dheerasankarabharanam"
+      ]
+  },
+  "101101010110" :
+  {
+    "name": "Dorian",
+    "alternate_names":
+      [
+        "Greek Phrygian",
+        "Hypomixolydian",
+        "Mela Kharaharapriya",
+        "Khafi That"
+      ]
+  },
+  "110101011010" :
+    {
+    "name": "Phrygian",
+    "alternate_names":
+      [
+        "Greek Dorian",
+        "Hypoaeolian",
+        "Maqam Kurd",
+        "Ousak",
+        "Major Inverse",
+        "Bhairavi That",
+        "Mela Hanumatodi",
+        "Yishtabach",
+        "Kiordi (Descending)"
+      ]
+  },
+  "101010110101" :
+   {
+    "name": "Lydian",
+    "alternate_names":
+      [
+        "Greek Hypolydian",
+        "Hypolocrian",
+        "Kalyan That",
+        "Mela Mechakalyani"
+      ]
+  },
+  "101011010110" :
+  {
+    "name": "Mixolydian",
+    "alternate_names":
+      [
+        "Greek Hypophrygian",
+        "Hypoionian",
+        "Khamaj That",
+        "Rast (Descending)",
+        "Mela Harikambhoji",
+        "Adonai Malach"
+      ]
+  },
+  "101101011010" :
+  {
+    "name": "Natural Minor",
+    "alternate_names":
+      [
+        "Aeolian",
+        "Greek Hypodorian",
+        "Ancient Minor",
+        "Asaravi That",
+        "Mela Natabhairavi",
+        "Maqam Nahawand Kurd"
+      ]
+  },
+  "110101101010" :
+  {
+    "name": "Locrian",
+    "alternate_names":
+      [
+        "Greek Mixolydian",
+        "Hypophrygian"
+      ]
+  },
+  "101101010101" :
+  {
+    "name": "Melodic Minor",
+    "alternate_names":
+      [
+        "Minor Major",
+        "Jazz Minor",
+        "Mela Gourimanohari",
+        "Ipoionian"
+      ]
+  },
+  "110101010110" :
+  {
+    "name": "Melodic Minor, 2nd Mode",
+    "alternate_names":
+      [
+        "Phrygian #6",
+        "Dorian b2",
+        "Javanese",
+        "Neapolitan Dorian",
+        "Mela Natakapriya"
+      ]
+  },
+  "101010101101" :
+  {
+    "name": "Melodic Minor, 3rd Mode",
+    "alternate_names":
+      [
+        "Lydian Augmented"
+      ]
+  },
+  "101010110110" :
+  {
+    "name": "Melodic Minor, 4th Mode",
+    "alternate_names":
+      [
+        "Lydian Dominant",
+        "Acoustic",
+        "Mela Vachaspati",
+        "Overtone"
+      ]
+  },
+  "101011011010" :
+  {
+    "name": "Melodic Minor, 5th Mode",
+    "alternate_names":
+      [
+        "Mixolydian b6",
+        "Major-Minor Scale",
+        "Aeolian Dominant",
+        "Hindustan",
+        "Mela Charukesi"
+      ]
+  },
+  "101101101010" :
+  {
+    "name": "Melodic Minor, 6th Mode",
+    "alternate_names":
+      [
+        "Locrian ♮2",
+        "Minor Locrian",
+        "Semi Locrian"
+      ]
+  },
+  "110110101010" :
+  {
+    "name": "Melodic Minor, 7th Mode",
+    "alternate_names":
+      [
+        "Super Locrian",
+        "Altered",
+        "Diminished Whole-Tone",
+        "Ravel"
+      ]
+  },
+  "101101011001" :
+  {
+    "name": "Harmonic Minor",
+    "alternate_names":
+      [
+        "Mela Keeravani",
+        "Mohammedan"
+      ]
+  },
+  "110101100110" :
+  {
+    "name": "Harmonic Minor, 2nd Mode",
+    "alternate_names":
+      [
+        "Locrian #6",
+        "Oriental Mode I"
+      ]
+  },
+  "101011001101" :
+  {
+    "name": "Harmonic Minor, 3rd Mode",
+    "alternate_names":
+      [
+        "Ionian Augmented"
+      ]
+  },
+  "101100110110" :
+  {
+    "name": "Harmonic Minor, 4th Mode",
+    "alternate_names":
+      [
+        "Dorian #4",
+        "Misheberakh",
+        "Doina",
+        "Mela Hemavati",
+        "Romanian",
+        "Ukranian Dorian",
+        "Souzenak",
+        "Maqam Nakriz"
+      ]
+  },
+  "110011011010" :
+  {
+    "name": "Harmonic Minor, 5th Mode",
+    "alternate_names":
+      [
+        "Mixolydian b2 b6",
+        "Phrygian Dominant",
+        "Hijaz",
+        "Freygish",
+        "Balkan",
+        "Spanish Gipsy",
+        "7-Tone Spanish Phrygian",
+        "Ahava Raba",
+        "Mela Vakulabharanam"
+      ]
+  },
+  "100110110110" :
+  {
+    "name": "Harmonic Minor, 6th Mode",
+    "alternate_names":
+      [
+        "Lydian #2",
+        "Periaiotikos",
+        "Hungarian Major I",
+        "Mela Nasikabhushani"
+      ]
+  },
+  "110110101100" :
+  {
+    "name": "Harmonic Minor, 7th Mode",
+    "alternate_names":
+      [
+        "Ultra Locrian"
+      ]
+  },
+  "101011011001" :
+  {
+    "name": "Harmonic Major",
+    "alternate_names":
+      [
+        "Mela Sarasangi",
+        "Maqam Shawq Afza",
+        "Ionian b6"
+      ]
+  },
+  "101101100110" :
+  {
+    "name": "Harmonic Major, 2nd Mode",
+    "alternate_names":
+      [
+        "Dorian b5",
+        "Doric Locrian",
+        "Karcigar",
+        "Kiordi (Ascending)"
+      ]
+  },
+  "110110011010" :
+  {
+    "name": "Harmonic Major, 3rd Mode",
+    "alternate_names":
+      [
+        "Phrygian b4",
+        "Shostakovich",
+        "Super Locrian ♮5",
+        "Super Phrygian"
+      ]
+  },
+  "101100110101" :
+  {
+    "name": "Harmonic Major, 4th Mode",
+    "alternate_names":
+      [
+        "Lydian b3",
+        "Lydian Diminshed",
+        "Mela Dharmavati"
+      ]
+  },
+  "110011010110" :
+   {
+    "name": "Harmonic Major, 5th Mode",
+    "alternate_names":
+      [
+        "Mixolydian b2",
+        "Neapolitan Mixolydian",
+        "Mela Chakravakam",
+        "Maqam Zankulah"
+      ]
+  },
+  "100110101101" :
+  {
+    "name": "Harmonic Major, 6th Mode",
+    "alternate_names":
+      [
+        "Lydian Augmented #2"
+      ]
+  },
+  "110101101100" :
+  {
+    "name": "Harmonic Major, 7th Mode",
+    "alternate_names":
+      [
+        "Locrian bb7"
+      ]
+  },
+  "110011011001" :
+    {
+    "name": "Double Harmonic Major",
+    "alternate_names":
+      [
+        "Ionian b2 b6",
+        "Hijazkiar",
+        "Bizantine",
+        "Major Gipsy",
+        "Arabic",
+        "Mela Mayamalavagowla",
+        "Chahargah",
+        "Bhairav That"
+      ]
+  },
+  "100110110011" :
+  {
+    "name": "Double Harmonic Major, 2nd Mode",
+    "alternate_names":
+      [
+        "Lydian #2 #6",
+        "Mela Rasikapriya"
+      ]
+  },
+  "110110011100" :
+  {
+    "name": "Double Harmonic Major, 3rd Mode",
+    "alternate_names":
+      [
+        "Ultra Phrygian",
+        "Phrygian b4 bb7"
+      ]
+  },
+  "101100111001" :
+  {
+    "name": "Double Harmonic Major, 4th Mode",
+    "alternate_names":
+      [
+        "Lydian b3 b6",
+        "Hungarian Minor Mode II",
+        "Double Harmonic Minor",
+        "Algerian",
+        "Minor Gipsy",
+        "Niaventi",
+        "Mela Simhendramadhyamam"
+      ]
+  },
+  "110011100110" :
+  {
+    "name": "Double Harmonic Major, 5th Mode",
+    "alternate_names":
+      [
+        "Mixolydian b2 b5",
+        "Oriental Mode II",
+        "Tsinganikos",
+        "Persian Mode"
+      ]
+  },
+  "100111001101" :
+   {
+    "name": "Double Harmonic Major, 6th Mode",
+    "alternate_names":
+      [
+        "Ionian Augmented #2"
+      ]
+  },
+  "111001101100" :
+  {
+    "name": "Double Harmonic Major, 7th Mode",
+    "alternate_names":
+      [
+        "Locrian bb3 bb7"
+      ]
+  },
+  "110101010101" :
+  {
+    "name": "Neapolitan",
+    "alternate_names":
+      [
+        "Phrygian Major",
+        "Mela Kokilapriya"
+      ]
+  },
+  "110011010101" :
+  {
+    "name": "Neapolitan Major",
+    "alternate_names":
+      [
+        "Mela Suryakantam"
+      ]
+  },
+  "110101011001" :
+  {
+    "name": "Neapolitan Minor",
+    "alternate_names":
+      [
+        "Harmonic Phrygian",
+        "Mela Dhenuka"
+      ]
+  },
+  "100111011001" :
+  {
+    "name": "Mela Gangeyabhushani",
+    "alternate_names":
+      [
+        "Houzam"
+      ]
+  },
+  "101110011010" :
+  {
+    "name": "Sabach",
+    "alternate_names": []
+  },
+  "100111011010" :
+  {
+    "name": "Mela Ragavardhini",
+    "alternate_names":
+      [
+        "Segiah"
+      ]
+  },
+  "110010101011" :
+  {
+    "name": "Enigmatic",
+    "alternate_names": []
+  },
+  "100110110101" :
+  {
+    "name": "Hungarian Major II",
+    "alternate_names":
+      [
+        "Mela Kosalam"
+      ]
+  },
+  "101010101011" :
+  {
+    "name": "Leading Whole-Tone",
+    "alternate_names": []
+  },
+  "101010101110" :
+  {
+    "name": "Lydian Augmented Dominant",
+    "alternate_names": []
+  },
+  "101010111010" :
+  {
+    "name": "Lydian Minor",
+    "alternate_names":
+      [
+        "Mela Rishabhapriya"
+      ]
+  },
+  "101011101010" :
+  {
+    "name": "Major Locrian",
+    "alternate_names": []
+  },
+  "101011001110" :
+  {
+    "name": "Mixolydian Augmented",
+    "alternate_names": []
+  },
+  "101100111010" :
+  {
+    "name": "Hungarian Minor Mode I",
+    "alternate_names":
+      [
+        "Hungarian Gipsy",
+        "Mela Shanmukhapriya",
+        "Magyar"
+      ]
+  },
+  "110011101010" :
+  {
+    "name": "Locrian Dominant",
+    "alternate_names": []
+  },
+  "100111010110" :
+  {
+    "name": "Mela Vagadheeswari",
+    "alternate_names":
+      [
+        "Mixolydian #2"
+      ]
+  },
+  "101101101001" :
+  {
+    "name": "Locrian Minor",
+    "alternate_names": []
+  },
+  "110010111001" :
+  {
+    "name": "Purvi That",
+    "alternate_names":
+      [
+        "Mela Kamavardani"
+      ]
+  },
+  "110100111001" :
+  {
+    "name": "Todi That",
+    "alternate_names":
+      [
+        "Mela Shubhapantuvarali"
+      ]
+  },
+  "110010110101" :
+   {
+    "name": "Neapolitan Lydian",
+    "alternate_names":
+      [
+        "Mela Gamanashrama",
+        "Marwa That"
+      ]
+  },
+  "101010111001" :
+  {
+    "name": "Lydian b6",
+    "alternate_names":
+      [
+        "Mela Latangi"
+      ]
+  },
+  "111001011100" :
+  {
+    "name": "Mela Kanakangi",
+    "alternate_names": []
+  },
+  "111001011010" :
+  {
+    "name": "Mela Ratnangi",
+    "alternate_names": []
+  },
+  "111001011001" :
+  {
+    "name": "Mela Ganamurti",
+    "alternate_names": []
+  },
+  "111001010110" :
+  {
+    "name": "Mela Vanaspati",
+    "alternate_names": []
+  },
+  "111001010101" :
+  {
+    "name": "Mela Manavati",
+    "alternate_names": []
+  },
+  "111001010011" :
+  {
+    "name": "Mela Tanarupi",
+    "alternate_names": []
+  },
+  "110101011100" :
+  {
+    "name": "Mela Senavati",
+    "alternate_names": []
+  },
+  "110101010011" :
+  {
+    "name": "Mela Rupavati",
+    "alternate_names": []
+  },
+  "110011011100" :
+  {
+    "name": "Mela Gayakapriya",
+    "alternate_names": []
+  },
+  "110011010011" :
+  {
+    "name": "Mela Hatakambari",
+    "alternate_names": []
+  },
+  "101101011100" :
+  {
+    "name": "Mela Jhankaradhwani",
+    "alternate_names": []
+  },
+  "101101010011" :
+  {
+    "name": "Mela Varunapriya",
+    "alternate_names": []
+  },
+  "101011011100" :
+  {
+    "name": "Mela Mararanjani",
+    "alternate_names": []
+  },
+  "101011010011" :
+  {
+    "name": "Mela Naganandini",
+    "alternate_names": []
+  },
+  "100111011100" :
+  {
+    "name": "Mela Yagapriya",
+    "alternate_names": []
+  },
+  "100111010101" :
+  {
+    "name": "Mela Shulini",
+    "alternate_names": []
+  },
+  "100111010011" :
+  {
+    "name": "Mela Chalanata",
+    "alternate_names": []
+  },
+  "111000111100" :
+  {
+    "name": "Mela Salagam",
+    "alternate_names": []
+  },
+  "111000111010" :
+  {
+    "name": "Mela Jalarnavam",
+    "alternate_names": []
+  },
+  "111000111001" :
+  {
+    "name": "Mela Jhalavarali",
+    "alternate_names": []
+  },
+  "111000110110" :
+  {
+    "name": "Mela Navaneetam",
+    "alternate_names": []
+  },
+  "111000110101" :
+  {
+    "name": "Mela Pavani",
+    "alternate_names": []
+  },
+  "111000110011" :
+  {
+    "name": "Mela Raghupriya",
+    "alternate_names": []
+  },
+  "110100111100" :
+  {
+    "name": "Mela Gavambhodi",
+    "alternate_names": []
+  },
+  "110100111010" :
+  {
+    "name": "Mela Bhavapriya",
+    "alternate_names": []
+  },
+  "110100110110" :
+  {
+    "name": "Mela Shadvidamargini",
+    "alternate_names": []
+  },
+  "110100110101" :
+  {
+    "name": "Mela Suvarnangi",
+    "alternate_names": []
+  },
+  "110100110011" :
+  {
+    "name": "Mela Divyamani",
+    "alternate_names": []
+  },
+  "110010111100" :
+  {
+    "name": "Mela Dhavalambari",
+    "alternate_names": []
+  },
+  "110010111010" :
+  {
+    "name": "Mela Namanarayani",
+    "alternate_names": []
+  },
+  "110010110110" :
+  {
+    "name": "Mela Ramapriya",
+    "alternate_names": []
+  },
+  "110010110011" :
+  {
+    "name": "Mela Vishwambari",
+    "alternate_names": []
+  },
+  "101100111100" :
+  {
+    "name": "Mela Shamalangi",
+    "alternate_names": []
+  },
+  "101100110011" :
+  {
+    "name": "Mela Neetimati",
+    "alternate_names": []
+  },
+  "101010111100" :
+  {
+    "name": "Mela Kantamani",
+    "alternate_names": []
+  },
+  "101010110011" :
+  {
+    "name": "Mela Chitrambari",
+    "alternate_names": []
+  },
+  "100110111100" :
+  {
+    "name": "Mela Sucharitra",
+    "alternate_names": []
+  },
+  "100110111010" :
+  {
+    "name": "Mela Jyoti Swarupini",
+    "alternate_names": []
+  },
+  "100110111001" :
+  {
+    "name": "Mela Dhatuvardani",
+    "alternate_names": []
+  },
+  "100110011001" :
+  {
+    "name": "Augmented",
+    "alternate_names": []
+  },
+  "110011001100" :
+  {
+    "name": "Augmented Inverse",
+    "alternate_names":
+      [
+        "Tcherepnin Hexatonic"
+      ]
+  },
+  "100101110010" :
+  {
+    "name": "Minor Blues",
+    "alternate_names": []
+  },
+  "101110010100" :
+  {
+    "name": "Major Blues",
+    "alternate_names": []
+  },
+  "110101010010" :
+  {
+    "name": "Pelog",
+    "alternate_names":
+      [
+        "Balinese Pelog"
+      ]
+  },
+  "101010100110" :
+  {
+    "name": "Mystic",
+    "alternate_names":
+      [
+        "Prometheus"
+      ]
+  },
+  "110010100110" :
+  {
+    "name": "Neapolitan Prometheus",
+    "alternate_names": []
+  },
+  "101010101010" :
+  {
+    "name": "Whole-Tone",
+    "alternate_names": []
+  },
+  "101010010100" :
+  {
+    "name": "Pentatonic, 1st Mode",
+    "alternate_names":
+      [
+        "Major Pentatonic",
+        "Yona Nuki Major",
+        "Tizita Major",
+        "Ryo",
+        "Mongolian"
+      ]
+  },
+  "101001010100" :
+  {
+    "name": "Pentatonic, 2nd Mode",
+    "alternate_names":
+      [
+        "Yosenpo (Descending)",
+        "Ritusen",
+        "Scottish",
+        "Ambassel (Major)"
+      ]
+  },
+  "101001010010" :
+  {
+    "name": "Pentatonic, 3rd Mode",
+    "alternate_names":
+      [
+        "Suspended Pentatonic",
+        "Yosenpo (Ascending)",
+        "Yematebela Wofe",
+        "Ritsu",
+        "Egyptian"
+      ]
+  },
+  "100101010010" :
+  {
+    "name": "Pentatonic, 4th Mode",
+    "alternate_names":
+      [
+        "Minor Pentatonic",
+        "Minyo",
+        "Batti Minor"
+      ]
+  },
+  "100101001010" :
+  {
+    "name": "Pentatonic, 5th Mode",
+    "alternate_names":
+      [
+        "Shegaye",
+        "Man Gong"
+      ]
+  },
+  "101100011000" :
+  {
+    "name": "Hirajoshi",
+    "alternate_names":
+      [
+        "Tizita Minor"
+      ]
+  },
+  "110001010010" :
+  {
+    "name": "Han Iwato",
+    "alternate_names":
+      [
+        "Insenpo (Ascending)"
+      ]
+  },
+  "110001011000" :
+  {
+    "name": "Kumoi Joshi",
+    "alternate_names":
+      [
+        "Japanese Pentatonic",
+        "Insenpo (Descending)",
+        "Ambassel (Minor)"
+      ]
+  },
+  "110001100010" :
+  {
+    "name": "Iwato",
+    "alternate_names": []
+  },
+  "100010110001" :
+  {
+    "name": "Batti Major #4",
+    "alternate_names": []
+  },
+  "100011001001" :
+  {
+    "name": "Bacovia",
+    "alternate_names":
+      [
+        "Batti Major #5"
+      ]
+  },
+  "100100110010" :
+  {
+    "name": "Batti Minor #4",
+    "alternate_names": []
+  },
+  "100100110001" :
+  {
+    "name": "Batti Minor #4 #7",
+    "alternate_names": []
+  },
+  "101001011000" :
+  {
+    "name": "Kokin Joshi",
+    "alternate_names": []
+  },
+  "101100010100" :
+  {
+    "name": "Akebono",
+    "alternate_names": []
+  },
+  "100011010001" :
+  {
+    "name": "Ryukuan",
+    "alternate_names":
+      [
+        "Batti Major"
+      ]
+  },
+  "110001100100" :
+  {
+    "name": "Anchihoye",
+    "alternate_names": []
+  },
+  "101011011101" :
+  {
+    "name": "Bebop Major",
+    "alternate_names": []
+  },
+  "101011010111" :
+  {
+    "name": "Bebop Dominant",
+    "alternate_names": []
+  },
+  "101111010110" :
+  {
+    "name": "Bebop Dorian",
+    "alternate_names": []
+  },
+  "110101111010" :
+  {
+    "name": "Bebop Locrian",
+    "alternate_names": []
+  },
+  "110011011011" :
+  {
+    "name": "Bebop Double Harmonic Major",
+    "alternate_names": []
+  },
+  "101101011101" :
+  {
+    "name": "Bebop Melodic Minor",
+    "alternate_names": []
+  },
+  "101101011011" :
+  {
+    "name": "Bebop Harmonic Minor",
+    "alternate_names": []
+  },
+  "110110110110" :
+  {
+    "name": "Half/Whole Diminished",
+    "alternate_names": []
+  },
+  "101101101101" :
+  {
+    "name": "Whole/Half Diminished",
+    "alternate_names": []
+  },
+  "110011101001" :
+  {
+    "name": "Persian Scale",
+    "alternate_names": []
+  },
+  "110111101010" :
+  {
+    "name": "Espla's Scale",
+    "alternate_names":
+      [
+        "8-Tone Spanish"
+      ]
+  },
+  "110111011010" :
+  {
+    "name": "8-Tone Spanish Phrygian",
+    "alternate_names": []
+  },
+  "110111011101" :
+  {
+    "name": "Tcherepnin Enneatonic",
+    "alternate_names": []
+  },
+  "111111111111" :
+  {
+    "name": "Chromatic",
+    "alternate_names": []
+  }
+}
