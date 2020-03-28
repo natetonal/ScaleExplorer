@@ -23,12 +23,6 @@ class ScaleExplorer:
             print(ERROR_1)
             return
 
-        some_scales = self.scales.get_scales_of_length(7)
-        for scale in some_scales:
-            if scale.get_name() != 'Unknown':
-                print(f"{scale.get_name()} : {self.converter.convert_scale(scale, B, FL)}, leap pattern: {scale.get_leap_pattern()}")
-
-
 
 if __name__ == '__main__':
     ScaleExplorer()

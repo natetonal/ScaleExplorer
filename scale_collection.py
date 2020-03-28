@@ -3,9 +3,14 @@ from constants import MIN_SCALE_LENGTH, MAX_SCALE_LENGTH
 
 
 class ScaleCollection:
+    """ A ScaleCollection holds a collection of Scale objects and has some useful methods to retrieve data from
+    the collection. """
 
     def __init__(self, scales):
+        """ Initializes the ScaleCollection from a dictionary of raw scale data and creates/stores a Scale object
+        for each one. """
 
+        # A dictionary of Scale objects keyed by their scale_id.
         self._scales = {}
 
         for key in scales.keys():
@@ -25,7 +30,7 @@ class ScaleCollection:
         return None
 
     def get_scale_by_name(self, name):
-        """ Returns a Scale object by name, also searching alternate names. """
+        """ Returns a Scale object by name (also searching alternate names), or None if none found. """
 
         for scale in self._scales.values():
             if scale.get_name() == name:
@@ -38,7 +43,7 @@ class ScaleCollection:
         return None
 
     def get_scales_of_length(self, length):
-        """ A method that returns a list of all Scale objects of a given length. """
+        """ A method that returns a list of all Scale objects of a given length, or None if none found. """
 
         # If the number entered is out of bounds, return None.
         if length < MIN_SCALE_LENGTH or length > MAX_SCALE_LENGTH:

@@ -21,6 +21,7 @@ class NoteCollection:
 
     def get_collection(self):
         """ Returns the entire Note Collection. """
+
         return self._collection
 
     def get_note(self, root, acc=NT):

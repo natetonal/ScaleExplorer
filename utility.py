@@ -22,7 +22,7 @@ class ScaleUtility:
         # Storage space for the new JSON file.
         all_scales = {}
 
-        # Create new JSON file with all proper keys and all valid binary strings.
+        # Merge the source JSON with the scale string combinations to create the data.
         for string in scale_strings:
             if string in scales:
                 scales[string]['length'] = self.scale_length(string)
@@ -39,7 +39,7 @@ class ScaleUtility:
                         'leap_pattern': self.leap_pattern(string)
                     }
 
-        # Write to ScaleLibrary JSON file that will be used by program.
+        # Write data to the ScaleLibrary JSON file that will be used by program.
         with open('ScaleLibrary.json', 'w') as scale_json:
             json.dump(all_scales, scale_json, sort_keys=True, indent=4)
 
@@ -47,11 +47,13 @@ class ScaleUtility:
     def is_a_scale(scale):
         """ Checks to make sure this is a valid scale. For the sake of this program, a valid scale
         must have at least 5 notes in it, and the first note must be included. """
+
         return scale.count('1') >= MIN_SCALE_LENGTH and scale[0] is '1'
 
     @staticmethod
     def scale_length(scale):
         """ Checks how many notes are in this scale. """
+
         return scale.count('1')
 
     @staticmethod
