@@ -16,9 +16,23 @@ B = 'B'
 # ACCIDENTALS
 NT = ''
 SH = '#'
-DS = 'x'
-FL = 'b'
-DF = 'bb'
+DS = '##'
+FL = '-'
+DF = '--'
+
+# SHORT NAMES
+NT_SHORT = ''
+SH_SHORT = '♯'
+DS_SHORT = '𝄪'
+FL_SHORT = '♭'
+DF_SHORT = '𝄫'
+
+# LONG NAMES
+NT_LONG = ''
+SH_LONG = 'sharp'
+DS_LONG = 'double-sharp'
+FL_LONG = 'flat'
+DF_LONG = 'double-flat'
 
 # SCALE LIBRARY JSON CONSTANTS
 SEED = '10'                     # The binary string used to create all permutations of scale strings.
