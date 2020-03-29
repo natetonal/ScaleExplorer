@@ -31,26 +31,14 @@ class ScaleExplorer:
         # UI Immutable Data Members
         self._keys_for_display = tuple([note.get_longname() for note in self._keys])
         self._default_key = 6
+        self._max_scale_display = 10
 
         # UI Mutable Data Members
-        self.scales_for_display = self.scales.get_scales()
-        self.selected_key = self._keys[self._default_key] # You changed this from long name to note.
+        self.scales_for_display = self.scales.get_scales_as_list()
+        self.selected_key = self._keys[self._default_key]  # You changed this from long name to note.
         self.note_opts_by_key = self._converter.get_note_order_by_key(
             root=self._keys[self._default_key].get_root(), acc=self._keys[self._default_key].get_accidental()
         )
-
-        # User Selections
-        self.user_selections = {
-            'notes': []
-        }
-
-        # DEMO - to be removed later
-        # some_scales = self.scales.get_scales_of_length(7)
-        # for scale in some_scales:
-        #     if scale.get_name() != 'Unknown':
-        #         print(
-        #             f"{scale.get_name()} : {self._converter.convert_scale(scale, B, FL)}, leap pattern: {scale.get_leap_pattern()}")
-        ###
 
         self.display_gui()
 
@@ -71,7 +59,8 @@ class ScaleExplorer:
         cb_size = 6
 
         # Scale style definitions
-        scale_header_size = 32
+        scale_header_font_size = 32
+        scale_header_size = 40
         scale_subheader_size = 16
         scale_list_font_size = 18
         scale_list_size = 52
@@ -121,32 +110,34 @@ class ScaleExplorer:
         ]
 
         # Row 2
-        layout_two = [[]]
+        checkboxes = [[]]
 
         # Cycle through all the note choices by key and create a checkbox for them.
         for i in range(1, MAX_SCALE_LENGTH):
-            layout_two[0].append(
+            checkboxes[0].append(
                 sg.Checkbox(self.note_opts_by_key[i].get_shortname(),
                             size=(cb_size, 1),
                             enable_events=True,
+                            disabled=True,
                             key=R2_NOTE + str(i))
             )
+
+        layout_two = [sg.Frame(
+                        'Notes to include (Feature coming soon!): ',
+                        checkboxes,
+                        pad=(50, 3),
+                        element_justification='center'
+        )]
 
         # The list to hold the scale display tiles.
         scale_layout = []
 
         # Cycle through scales_for_display and generate scale tiles for display to user.
-        for i, scale in enumerate(self.scales_for_display.values(), 1):
+        for i, scale in enumerate(self.scales_for_display, 1):
 
             # Convert each scale to the selected key.
-            converted_scale = [sc for sc in self._converter.convert_scale(
-                scale, self.selected_key.get_root(), self.selected_key.get_accidental())]
-
-            # Format the alternate names for scale for display.
-            if scale.get_alternate_names() is None:
-                alternate_names = "None."
-            else:
-                alternate_names = ", ".join([alt for alt in scale.get_alternate_names()])
+            converted_scale = self._converter.convert_scale(
+                scale, self.selected_key.get_root(), self.selected_key.get_accidental())
 
             # Get a formatted string of the notes of this scale for the given key.
             scale_notes = ", ".join([nt.get_shortname() for nt in converted_scale])
@@ -155,16 +146,18 @@ class ScaleExplorer:
             this_scale = [
                 [sg.Text('' + str(i) + '. ' + scale.get_name(),
                          background_color=scale_bg_color,
-                         font=('Lato', scale_header_size),
+                         size=(scale_header_size, 1),
+                         font=('Lato', scale_header_font_size),
                          key=SC_TITLE + str(i))],
                 [sg.Text('Alternate Names: ',
                          background_color=scale_bg_color,
                          pad=(0, 0),
                          text_color=scale_alt_text,
                          font=('Lato', scale_subheader_size)),
-                 sg.Text(alternate_names,
+                 sg.Text(scale.get_formatted_alt_names(),
                          background_color=scale_bg_color,
                          pad=(0, 0),
+                         size=(70, 1),
                          font=('Lato', scale_subheader_size),
                          key=SC_ALTS + str(i))],
                 [sg.Text('Number of notes: ',
@@ -207,17 +200,43 @@ class ScaleExplorer:
 
             # TODO: Auto-Refresh by groups of 10 (Use Generator)
             # For now, break after 10 scales have loaded.
-            if i > 10:
+            if i > self._max_scale_display:
                 break
+
+        # Display to use when no scales are found (hidden by default)
+        no_scales_found = [
+            sg.Text(
+                '\nNo scales found. Try revising your search.',
+                font=('Lato', 24),
+                key=SC_EMPTY,
+                size=(58, 3),
+                justification='center',
+                visible=False,
+                background_color=scale_bg_color
+            )]
+
+        # The scrollable scale output column (hidden if no scales found)
+        scales_display = [
+            sg.Column(
+                scale_layout,
+                key=SC_MAIN,
+                scrollable=True,
+                visible=True,
+                vertical_scroll_only=True
+            )]
+
+        # Vertical bar display
+        vertical_bar1 = [sg.Text('_' * adjusted_full)]
+        vertical_bar2 = [sg.Text('_' * adjusted_full)]
 
         # Build the GUI layout row by row from above defined rows.
         layout = [
             layout_one,
-            [sg.Text('_' * adjusted_full)],
-            [sg.Frame('Notes to include (Leave unchecked for all): ', layout_two,
-                      pad=(50, 3), element_justification='center')],
-            [sg.Text('_' * adjusted_full)],
-            [sg.Column(scale_layout, scrollable=True, vertical_scroll_only=True)]
+            vertical_bar1,
+            layout_two,
+            vertical_bar2,
+            no_scales_found,
+            scales_display
         ]
 
         # Attach the GUI Layout to the window and add a title.
@@ -251,15 +270,71 @@ class ScaleExplorer:
         # Update the display scales state with the selected note count.
         self.update_scales_by_note_count(values[R1_NOTECOUNT])
 
+        # Update the display scales state with the selected search value.
+        self.update_scales_by_search(values[R1_SEARCH])
+
+        # If refining the scales left them empty, then make the error display visible.
+        if self.scales_for_display is None:
+            window[SC_MAIN].update(visible=False)
+            window[SC_EMPTY].update(visible=True)
+            return
+
+        # Otherwise, make sure the scales are visible and the empty warning isn't.
+        window[SC_MAIN].update(visible=True)
+        window[SC_EMPTY].update(visible=False)
+
+        # Otherwise, update each element in the scale column GUI to reflect the new state.
+        for i, scale in enumerate(self.scales_for_display, 1):
+            # Convert scale to the selected key.
+            converted_scale = self._converter.convert_scale(
+                scale, self.selected_key.get_root(), self.selected_key.get_accidental())
+
+            # Get a formatted string of the notes of this scale for the given key.
+            scale_notes = ", ".join([nt.get_shortname() for nt in converted_scale])
+
+            # Get the scale name and alternate names
+            scale_name = scale.get_name()
+            scale_alt_names = scale.get_formatted_alt_names()
+
+            window[SC_COLUMN + str(i)].update(visible=True)
+            window[SC_TITLE + str(i)].update('' + str(i) + '. ' + scale_name)
+            window[SC_ALTS + str(i)].update(scale_alt_names)
+            window[SC_COUNT + str(i)].update(len(scale))
+            window[SC_NOTES + str(i)].update(scale_notes)
+
+            if i > self._max_scale_display:
+                break
+
+        # If there were fewer scales than the maximum scale display, then hide the other scales.
+        if len(self.scales_for_display) < self._max_scale_display:
+            for i in range(len(self.scales_for_display) + 1, self._max_scale_display + 2):
+                window[SC_COLUMN + str(i)].update(visible=False)
+
+        window.refresh()
+
+    def update_scales_by_search(self, search):
+        """ Updates the scales to be displayed with only those matching (or partial matching) the given search. """
+
+        # Strip any whitespace from left & right side of string.
+        search_str = search.strip()
+
+        # If the search box or scales list is empty, no updating needs to be done.
+        if not search_str or not self.scales_for_display:
+            return
+
+        # Otherwise, search for valid matches.
+        self.scales_for_display = self.scales.get_scales_with_substring(search_str, self.scales_for_display)
+
     def update_scales_by_note_count(self, note_count):
         """ Updates the scales to be displayed given the current user note count selection. """
 
         # If 'ANY' is selected, then reset scale_list to master list.
-        self.scales_for_display = self.scales.get_scales()
+        if note_count is ANY:
+            self.scales_for_display = self.scales.get_scales_as_list()
+            return
 
         # Otherwise, set scales to only include ones with this note count.
-        if note_count is not ANY:
-            self.scales_for_display = self.scales.get_scales_of_length(int(note_count))
+        self.scales_for_display = self.scales.get_scales_of_length(int(note_count))
 
     def update_note_selections(self, selected_note, window):
         """ Updates the GUI's note selection row with note names given by the selected key. """
@@ -280,21 +355,6 @@ class ScaleExplorer:
 if __name__ == '__main__':
     ScaleExplorer()
 
-# layout = [[sg.Text('Some text on Row 1', font=("Lato", 20))],
-#           [sg.Text('Enter something on Row 2', font=("Lato", 20)), sg.InputText(font=("Lato", 20))],
-#           [sg.Button('Ok', tooltip='Hi friend', font=("Lato", 20)), sg.Button('Cancel', font=("Lato", 20))]]
-#
-# # Create the Window
-# window = sg.Window('ScaleExplorer v1.0', layout)
-# # Event Loop to process "events" and get the "values" of the inputs
-# while True:
-#     event, values = window.read()
-#     if event in (None, 'Cancel'):  # if user closes window or clicks cancel
-#         break
-#     print('You entered ', values[0])
-#
-# window.close()
-
 # Short program that uses music21's tools to output a scale to the user through MuseScore.
 
 # phryg = self.scales.get_scale_by_name("Phrygian")
@@ -309,4 +369,3 @@ if __name__ == '__main__':
 # scale_stream.metadata.title = phryg_name
 # scale_stream.metadata.composer = 'ScaleExplorer v1.0'
 # scale_stream.show()
-
