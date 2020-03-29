@@ -61,15 +61,31 @@ class ScaleExplorer:
         sg.theme('Black')
         sg.SetOptions(font=("Lato", 14))
 
-        # Sizing options
+        # Global sizing options
         full_width = 80
         full_size = int(full_width / 2)
         half_size = int(full_size / 2)
         adjusted_full = full_width + full_size + half_size
 
-        note_nums = ('Any', '5', '6', '7', '8', '9', '10', '11', '12')
+        # Element-specific definitions
+        cb_size = 6
 
-        # Row 1 columns
+        # Scale style definitions
+        scale_header_size = 32
+        scale_subheader_size = 16
+        scale_list_font_size = 18
+        scale_list_size = 52
+        mini_bar_font_size = 8
+        mini_bar_size = 80
+        mini_bar_color = '#dddddd'
+        scale_bg_color = '#222222'
+        scale_alt_text = 'orange'
+        button_pdf_color = '#00e676'
+        button_muse_color = '#2fa4e7'
+
+        note_nums = (ANY, '5', '6', '7', '8', '9', '10', '11', '12')
+
+        # Row 1 - Key selection combo box.
         col_topleft = [
             [sg.Text('Key: ', size=(half_size, 1))],
             [sg.Drop(self._keys_for_display,
@@ -79,51 +95,47 @@ class ScaleExplorer:
                      key='R1_KEY')]
         ]
 
+        # Row 1 - Note count selection combo box.
         col_topmid = [
             [sg.Text('# of Notes: ', size=(half_size, 1))],
-            [sg.Drop(note_nums, default_value=note_nums[0], size=(half_size, 1), key='R1_NOTECOUNT')]
+            [sg.Drop(
+                note_nums,
+                default_value=note_nums[0],
+                enable_events=True,
+                size=(half_size, 1),
+                key='R1_NOTECOUNT')]
         ]
 
+        # Row 1 - Search box.
         col_topright = [
             [sg.Text('Search: ', size=(full_size, 1))],
-            [sg.In(size=(full_size, 1), key='R1_SEARCH')]
+            [sg.In(size=(full_size, 1), enable_events=True, key='R1_SEARCH')]
         ]
 
-        # Row 1
-        layout_one = [sg.Column(col_topleft), sg.Column(col_topmid), sg.VerticalSeparator(), sg.Column(col_topright)]
+        # Row 1 - Combined layout.
+        layout_one = [
+            sg.Column(col_topleft),
+            sg.Column(col_topmid),
+            sg.VerticalSeparator(),
+            sg.Column(col_topright)
+        ]
 
-        # TODO: NOTE SELECTION FUNCTIONALITY - Save for later
         # Row 2
-        # layout_two = [[
-        #     sg.Checkbox(self.note_opts_by_key[1].get_shortname(), size=(cb_size, 1), enable_events=True, key='R2_NOTE1'),
-        #     sg.Checkbox(self.note_opts_by_key[2].get_shortname(), size=(cb_size, 1),enable_events=True, key='R2_NOTE2'),
-        #     sg.Checkbox(self.note_opts_by_key[3].get_shortname(), size=(cb_size, 1),enable_events=True, key='R2_NOTE3'),
-        #     sg.Checkbox(self.note_opts_by_key[4].get_shortname(), size=(cb_size, 1),enable_events=True, key='R2_NOTE4'),
-        #     sg.Checkbox(self.note_opts_by_key[5].get_shortname(), size=(cb_size, 1),enable_events=True, key='R2_NOTE5'),
-        #     sg.Checkbox(self.note_opts_by_key[6].get_shortname(), size=(cb_size, 1),enable_events=True, key='R2_NOTE6'),
-        #     sg.Checkbox(self.note_opts_by_key[7].get_shortname(), size=(cb_size, 1),enable_events=True, key='R2_NOTE7'),
-        #     sg.Checkbox(self.note_opts_by_key[8].get_shortname(), size=(cb_size, 1),enable_events=True, key='R2_NOTE8'),
-        #     sg.Checkbox(self.note_opts_by_key[9].get_shortname(), size=(cb_size, 1),enable_events=True, key='R2_NOTE9'),
-        #     sg.Checkbox(self.note_opts_by_key[10].get_shortname(), size=(cb_size, 1),enable_events=True, key='R2_NOTE10'),
-        #     sg.Checkbox(self.note_opts_by_key[11].get_shortname(), size=(cb_size, 1),enable_events=True, key='R2_NOTE11'),
-        # ]]
+        layout_two = [[]]
 
-        scale_header_size = 32
-        scale_subheader_size = 16
-        scale_list_font_size = 24
-        scale_list_size = 39
-        mini_bar_size = 40
-        mini_bar_color = '#dddddd'
-        scale_bg_color = '#222222'
-        scale_alt_text = 'orange'
-        button_pdf_color = '#00e676'
-        button_muse_color = '#2fa4e7'
+        # Cycle through all the note choices by key and create a checkbox for them.
+        for i in range(1, MAX_SCALE_LENGTH):
+            layout_two[0].append(
+                sg.Checkbox(self.note_opts_by_key[i].get_shortname(),
+                            size=(cb_size, 1),
+                            enable_events=True,
+                            key=R2_NOTE + str(i))
+            )
 
         # The list to hold the scale display tiles.
         scale_layout = []
 
         # Cycle through scales_for_display and generate scale tiles for display to user.
-        # TODO: Auto-Refresh by groups of 10 (Use Generator)
         for i, scale in enumerate(self.scales_for_display.values(), 1):
 
             # Convert each scale to the selected key.
@@ -131,7 +143,6 @@ class ScaleExplorer:
                 scale, self.selected_key.get_root(), self.selected_key.get_accidental())]
 
             # Format the alternate names for scale for display.
-            alternate_names = ""
             if scale.get_alternate_names() is None:
                 alternate_names = "None."
             else:
@@ -148,14 +159,28 @@ class ScaleExplorer:
                          key=SC_TITLE + str(i))],
                 [sg.Text('Alternate Names: ',
                          background_color=scale_bg_color,
+                         pad=(0, 0),
                          text_color=scale_alt_text,
                          font=('Lato', scale_subheader_size)),
                  sg.Text(alternate_names,
                          background_color=scale_bg_color,
+                         pad=(0, 0),
                          font=('Lato', scale_subheader_size),
                          key=SC_ALTS + str(i))],
-                [sg.Text('_' * mini_bar_size,
+                [sg.Text('Number of notes: ',
                          background_color=scale_bg_color,
+                         pad=(0, 0),
+                         text_color=scale_alt_text,
+                         font=('Lato', scale_subheader_size)),
+                 sg.Text(str(len(scale)),
+                         background_color=scale_bg_color,
+                         pad=(0, 0),
+                         font=('Lato', scale_subheader_size),
+                         key=SC_COUNT + str(i))],
+                [sg.Text('_' * mini_bar_size,
+                         pad=(0, 0),
+                         background_color=scale_bg_color,
+                         font=('Lato', mini_bar_font_size),
                          text_color=mini_bar_color)],
                 [sg.Text(scale_notes,
                          background_color=scale_bg_color,
@@ -172,6 +197,7 @@ class ScaleExplorer:
                            key=SC_MUSE_BTN + str(i))]
             ]
 
+            # Append this scale as a column to the scale_layout.
             scale_layout.append([sg.Column(
                 this_scale,
                 background_color=scale_bg_color,
@@ -179,47 +205,76 @@ class ScaleExplorer:
                 key=SC_COLUMN + str(i))
             ])
 
+            # TODO: Auto-Refresh by groups of 10 (Use Generator)
+            # For now, break after 10 scales have loaded.
             if i > 10:
                 break
 
+        # Build the GUI layout row by row from above defined rows.
         layout = [
             layout_one,
             [sg.Text('_' * adjusted_full)],
-            # TODO: NOTE SELECTION FUNCTIONALITY - Save for later
-            # [sg.Frame('Notes to include (Leave unchecked for all): ', layout_two,
-            #           pad=(50, 3), element_justification='center')],
-            # [sg.Text('_' * adjusted_full)],
+            [sg.Frame('Notes to include (Leave unchecked for all): ', layout_two,
+                      pad=(50, 3), element_justification='center')],
+            [sg.Text('_' * adjusted_full)],
             [sg.Column(scale_layout, scrollable=True, vertical_scroll_only=True)]
         ]
 
+        # Attach the GUI Layout to the window and add a title.
         window = sg.Window('Scale Explorer v1.0', layout, default_element_size=(half_size, 1))
+
+        # Event Handler loop.
         while True:
+
+            # Read in any event and values from elements that are registered.
             event, values = window.read()
 
+            # If the user exits, quit the program.
             if event in (None, 'Exit'):
                 break
-            # TODO: NOTE SELECTION FUNCTIONALITY - Save for later
-            # if 'R1_KEY' in event:
-            #     self.update_note_selections(values[event])
-            #     for i in range(1, MAX_SCALE_LENGTH):
-            #         text = self.note_opts_by_key[i].get_shortname()
-            #         window[R2_NOTE + str(i)].update(text=text)
+
+            # If user selected a new key, update the checkbox displays to reflect the new key.
+            if R1_KEY in event:
+                self.update_note_selections(values[event], window)
+
+            # Use current event-enabled element states to update the GUI (selected key will be updated already).
+            self.update_gui(window, values)
 
         window.close()
 
-    def update_note_options_by_key(self, selected_key):
-        """ Takes the selected Note object as a parameter and updates the selected key and note selection options
-        data members from it. """
+    def update_gui(self, window, values):
+        """ Updates the GUI after a change has been made by the user. """
 
-        self.selected_key = selected_key
+        for key in values.keys():
+            print(key, values[key])
+
+        # Update the display scales state with the selected note count.
+        self.update_scales_by_note_count(values[R1_NOTECOUNT])
+
+    def update_scales_by_note_count(self, note_count):
+        """ Updates the scales to be displayed given the current user note count selection. """
+
+        # If 'ANY' is selected, then reset scale_list to master list.
+        self.scales_for_display = self.scales.get_scales()
+
+        # Otherwise, set scales to only include ones with this note count.
+        if note_count is not ANY:
+            self.scales_for_display = self.scales.get_scales_of_length(int(note_count))
+
+    def update_note_selections(self, selected_note, window):
+        """ Updates the GUI's note selection row with note names given by the selected key. """
+
+        # Get the Note object referenced by the user's selection and set as selected key.
+        self.selected_key = self._note_collection.get_note_by_longname(selected_note)
+
+        # Get the sequence of notes corresponding to the selected key.
         self.note_opts_by_key = self._converter.get_note_order_by_key(
-            root=selected_key.get_root(), acc=selected_key.get_accidental())
+            root=self.selected_key.get_root(), acc=self.selected_key.get_accidental())
 
-    # Can probably get rid of this.
-    def update_note_selections(self, selected_key):
-        """ Updates the names of the notes the user can select in the note options menu based on the chosen key. """
-
-        self.update_note_options_by_key(selected_key)
+        # Update the GUI checkbox labels with the short name of each note.
+        for i in range(1, MAX_SCALE_LENGTH):
+            text = self.note_opts_by_key[i].get_shortname()
+            window[R2_NOTE + str(i)].update(text=text)
 
 
 if __name__ == '__main__':
