@@ -79,10 +79,15 @@ class ScaleConverter:
             DS: self._double_sharp_order
         }
 
-    def get_keys(self):
-        """ Returns the keys dictionary. """
+    def get_note_collection(self):
+        """ Returns the NoteCollection object. """
 
-        return self._keys
+        return self._note_collection
+
+    def get_keys_by_note(self):
+        """ Returns a list of all the available keys by their Note object. """
+
+        return [value['note'] for value in self._keys.values()]
 
     def convert_scale(self, scale, root, acc=NT):
         """ Returns a list containing the valid notes of a scale given its key center. """

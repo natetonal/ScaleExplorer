@@ -8,13 +8,10 @@ from constants import (
 
 
 class Note:
+    """ Defines a Note and provides variations of its name. """
 
     def __init__(self, root, acc):
-        self._note = root + acc
-        self._root = root
-        self._accidental = acc
-        self._shortname = self._create_shortname(root, acc)
-        self._longname = self._create_longname(root, acc)
+        """ Initializes a Note object from its root and accidental. """
 
         # A mapping for generating short & long names for notes from the root & acc.
         self._namemap = {
@@ -24,6 +21,12 @@ class Note:
             DF: (DF_SHORT, DF_LONG),
             DS: (DS_SHORT, DS_LONG)
         }
+
+        self._note = root + acc
+        self._root = root
+        self._accidental = acc
+        self._shortname = self._create_shortname(root, acc)
+        self._longname = self._create_longname(root, acc)
 
     def get_note(self):
         return self._note
@@ -43,7 +46,7 @@ class Note:
     def _create_shortname(self, root, acc):
         """ Creates a displayable abbreviated name for this note. """
 
-        return root + self._namemap[acc][0]
+        return "" + root + self._namemap[acc][0]
 
     def _create_longname(self, root, acc):
         """ Creates a displayable full name for this note. """

@@ -24,6 +24,34 @@ class NoteCollection:
 
         return self._collection
 
+    def get_note_by_longname(self, longname):
+        """ Returns a note in the collection given its long name, if valid. """
+
+        try:
+            note_grid = self._collection[longname[0]]
+        except KeyError:
+            return print(KEY_ERROR)
+
+        for note in note_grid.values():
+            if note.get_longname() == longname:
+                return note
+
+        return None
+
+    def get_note_by_shortname(self, shortname):
+        """ Returns a note in the collection given its short name, if valid. """
+
+        try:
+            note_grid = self._collection[shortname[0]]
+        except KeyError:
+            return print(KEY_ERROR)
+
+        for note in note_grid.values():
+            if note.get_shortname() == shortname:
+                return note
+
+        return None
+
     def get_note(self, root, acc=NT):
         """ Retrieves a note given a base and modifier. """
 
@@ -33,4 +61,5 @@ class NoteCollection:
             return print(KEY_ERROR)
 
         return key.get_note()
+
 
