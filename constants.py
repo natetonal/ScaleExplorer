@@ -1,5 +1,4 @@
 # ERROR CODES
-
 KEY_ERROR = "ERROR: Key not found."
 VALUE_ERROR = "ERROR: Value not found."
 ERROR_1 = "ERROR: Please make sure to have a valid ScaleLibrary.json file."
@@ -59,3 +58,6 @@ SC_MUSE_BTN = 'SC_MUSE_BTN'
 
 # GUI STYLE KEYS
 RELIEF_RAISED = 'RELIEF_RAISED'
+
+# MUSIC21 INSTRUCTION CODES
+LILYPDF = 'lily.pdf'

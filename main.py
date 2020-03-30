@@ -256,6 +256,14 @@ class ScaleExplorer:
             if R1_KEY in event:
                 self.update_note_selections(values[event], window)
 
+            # TODO: If user pressed the PDF button, prepare scale as export to PDF.
+            if SC_PDF_BTN in event:
+                self.export_scale(event, values, LILYPDF)
+
+            # If user pressed the MuseScore button, prepare scale for export to MuseScore.
+            if SC_MUSE_BTN in event:
+                self.export_scale(event, values)
+
             # Use current event-enabled element states to update the GUI (selected key will be updated already).
             self.update_gui(window, values)
 
@@ -263,9 +271,6 @@ class ScaleExplorer:
 
     def update_gui(self, window, values):
         """ Updates the GUI after a change has been made by the user. """
-
-        for key in values.keys():
-            print(key, values[key])
 
         # Update the display scales state with the selected note count.
         self.update_scales_by_note_count(values[R1_NOTECOUNT])
@@ -350,6 +355,42 @@ class ScaleExplorer:
         for i in range(1, MAX_SCALE_LENGTH):
             text = self.note_opts_by_key[i].get_shortname()
             window[R2_NOTE + str(i)].update(text=text)
+
+    def export_scale(self, event, values, pdf=None):
+        """ Sends the scale data off to MuseScore to be displayed for playback/print. """
+
+        # Decipher which scale we're sending off by the numeric portion of the button key.
+        if pdf is None:
+            idx = int(event.replace(SC_MUSE_BTN, '')) - 1
+        else:
+            idx = int(event.replace(SC_PDF_BTN, '')) - 1
+        scale = self.scales_for_display[idx]
+
+        # Convert the scale to a format that will be readable by music21 plugin.
+        scale_name = scale.get_name()
+        converted_scale = self._converter.convert_scale(
+            scale, self.selected_key.get_root(),
+            self.selected_key.get_accidental()
+        )
+        scale_notes = [x.get_note() for x in converted_scale]
+
+        # Set up a music stream.
+        scale_stream = music21.stream.Stream()
+
+        # Add each note of the scale to the stream.
+        for note in scale_notes:
+            scale_stream.append(music21.note.Note(note))
+        scale_stream.append(music21.note.Note(scale_notes[0]))
+
+        # Add metadata for display.
+        scale_stream.metadata = music21.metadata.Metadata()
+        scale_stream.metadata.title = scale_name
+        scale_stream.metadata.composer = 'ScaleExplorer v1.0'
+
+        if pdf is None:
+            scale_stream.show()
+        else:
+            scale_stream.show(pdf)
 
 
 if __name__ == '__main__':
